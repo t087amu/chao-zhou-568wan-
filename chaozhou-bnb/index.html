@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>潮州民宿透天｜住商不動產</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1d6b3a;
+    --green-dark: #124a27;
+    --green-soft: #eaf3ec;
+    --gold: #c9a45c;
+    --ink: #1f2421;
+    --muted: #6b726d;
+    --line: #e7e9e6;
+    --bg: #f3f2ee;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding-bottom: 16px; }
+
+  /* ---------- 主視覺 ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 28px 22px 34px;
+    color: #fff;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(201,164,92,.35), transparent 45%),
+      linear-gradient(150deg, var(--green) 0%, var(--green-dark) 100%);
+    border-radius: 0 0 28px 28px;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -40px; bottom: -40px;
+    width: 180px; height: 180px;
+    border: 2px solid rgba(255,255,255,.12);
+    border-radius: 50%;
+  }
+  .store {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; letter-spacing: .05em;
+    background: rgba(255,255,255,.14);
+    padding: 5px 12px; border-radius: 999px;
+  }
+  .store b { color: var(--gold); font-weight: 700; }
+  h1 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 34px; font-weight: 900;
+    margin: 18px 0 6px; line-height: 1.25;
+    letter-spacing: .02em;
+  }
+  .tagline { margin: 0; font-size: 15px; opacity: .85; }
+  .price {
+    margin-top: 22px;
+    display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  }
+  .price .num { font-size: 56px; font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  .price .unit { font-size: 22px; font-weight: 700; }
+  .price .note {
+    margin-left: 10px; font-size: 12px;
+    padding: 3px 10px; border-radius: 999px;
+    background: var(--gold); color: var(--green-dark); font-weight: 700;
+  }
+
+  /* ---------- 重點標籤 ---------- */
+  .chips {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    margin: -22px 16px 0; position: relative; z-index: 2;
+  }
+  .chip {
+    background: var(--card); border-radius: 14px;
+    padding: 12px 4px; text-align: center;
+    box-shadow: 0 6px 18px rgba(18,74,39,.12);
+  }
+  .chip .i { font-size: 20px; }
+  .chip .t { font-size: 15px; font-weight: 700; margin-top: 2px; }
+  .chip .s { font-size: 11px; color: var(--muted); }
+
+  /* ---------- 卡片 ---------- */
+  .card {
+    background: var(--card); margin: 16px; border-radius: 18px;
+    padding: 20px 18px; box-shadow: 0 2px 10px rgba(0,0,0,.04);
+  }
+  h2 {
+    font-size: 17px; margin: 0 0 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2::before {
+    content: ""; width: 6px; height: 18px; border-radius: 3px;
+    background: linear-gradient(var(--green), var(--gold));
+  }
+
+  /* 坪數拆解 */
+  .area-total { display: flex; justify-content: space-between; align-items: baseline; }
+  .area-total .k { color: var(--muted); font-size: 14px; }
+  .area-total .v { font-size: 26px; font-weight: 900; color: var(--green); }
+  .bar {
+    display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin: 10px 0 12px; gap: 2px;
+  }
+  .bar span:nth-child(1) { background: var(--green); flex: 12.46; }
+  .bar span:nth-child(2) { background: var(--gold); flex: 12.46; }
+  .legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 13px; }
+  .legend div { display: flex; flex-direction: column; }
+  .legend i {
+    display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px;
+  }
+  .legend b { font-size: 16px; }
+
+  /* 規格列表 */
+  dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  dl div { padding: 11px 0; border-bottom: 1px dashed var(--line); }
+  dt { font-size: 12px; color: var(--muted); }
+  dd { margin: 0; font-size: 16px; font-weight: 700; }
+  dl div.full { grid-column: 1 / -1; }
+
+  /* 特色 */
+  ul.features { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  ul.features li {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--green-soft); border-radius: 12px;
+    padding: 12px 14px; font-size: 16px; font-weight: 500;
+  }
+  ul.features .ic {
+    flex: none; width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center; font-size: 18px;
+    background: #fff;
+  }
+
+  /* LINE 聯絡 */
+  .line-btn {
+    display: flex; align-items: center; gap: 14px;
+    margin: 16px; padding: 16px 18px;
+    background: #06c755; color: #fff; text-decoration: none;
+    border-radius: 18px; box-shadow: 0 6px 16px rgba(6,199,85,.28);
+  }
+  .line-btn .logo {
+    flex: none; width: 44px; height: 44px; border-radius: 12px;
+    background: #fff; color: #06c755;
+    display: grid; place-items: center;
+    font-weight: 900; font-size: 13px; letter-spacing: .02em;
+  }
+  .line-btn .txt { flex: 1; }
+  .line-btn .who { font-size: 18px; font-weight: 700; }
+  .line-btn .sub { font-size: 13px; opacity: .9; }
+  .line-btn .arrow { font-size: 22px; font-weight: 700; }
+
+  footer { text-align: center; font-size: 12px; color: var(--muted); padding: 4px 24px 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="store">住商不動產 <b>潮州新生加盟店</b></span>
+    <h1>潮州<br>民宿透天</h1>
+    <p class="tagline">透天 2 層・5 房 3 衛・全新整理</p>
+    <div class="price">
+      <span class="num">568</span><span class="unit">萬</span>
+      <span class="note">目前經營民宿</span>
+    </div>
+  </header>
+
+  <div class="chips">
+    <div class="chip"><div class="i">🛏️</div><div class="t">5房</div><div class="s">1廳3衛</div></div>
+    <div class="chip"><div class="i">🏠</div><div class="t">2層</div><div class="s">透天</div></div>
+    <div class="chip"><div class="i">📐</div><div class="t">24.92</div><div class="s">建坪</div></div>
+    <div class="chip"><div class="i">🌳</div><div class="t">20.73</div><div class="s">地坪</div></div>
+  </div>
+
+  <div class="card">
+    <h2>物件特色</h2>
+    <ul class="features">
+      <li><span class="ic">✨</span>全新整理</li>
+      <li><span class="ic">🛎️</span>目前經營民宿</li>
+      <li><span class="ic">🏫</span>近國小、夜市、火車站</li>
+      <li><span class="ic">🛣️</span>近台 1 線，交通便利</li>
+      <li><span class="ic">💰</span>低總價，投資民宿、自住都可以</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>坪數配置</h2>
+    <div class="area-total"><span class="k">總建坪</span><span class="v">24.92 坪</span></div>
+    <div class="bar"><span></span><span></span></div>
+    <div class="legend">
+      <div><span><i style="background:var(--green)"></i>一樓</span><b>12.46 坪</b></div>
+      <div><span><i style="background:var(--gold)"></i>二樓</span><b>12.46 坪</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>基本資料</h2>
+    <dl>
+      <div><dt>形態</dt><dd>透天</dd></div>
+      <div><dt>結構</dt><dd>加強磚造</dd></div>
+      <div><dt>完成日</dt><dd>民國 67 年 6 月</dd></div>
+      <div><dt>地坪</dt><dd>20.73 坪</dd></div>
+      <div><dt>面寬</dt><dd>4.2 米</dd></div>
+      <div><dt>縱深</dt><dd>16.5 米</dd></div>
+      <div><dt>臨路</dt><dd>4 米</dd></div>
+      <div><dt>座向</dt><dd>座西北朝東南</dd></div>
+      <div><dt>水源</dt><dd>自來水</dd></div>
+      <div><dt>使用分區</dt><dd>住宅區</dd></div>
+      <div class="full"><dt>學區</dt><dd>潮州國小</dd></div>
+    </dl>
+  </div>
+
+  <a class="line-btn" href="https://lin.ee/Nw9K6J0" target="_blank" rel="noopener">
+    <span class="logo">LINE</span>
+    <span class="txt"><div class="who">黃明鴻</div><div class="sub">加 LINE 詢問此物件</div></span>
+    <span class="arrow">›</span>
+  </a>
+
+  <footer>本頁資料僅供參考，實際內容以「不動產說明書」為準。</footer>
+
+</div>
+</body>
+</html>
